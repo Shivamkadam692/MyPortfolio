@@ -425,12 +425,30 @@ window.addEventListener('load', () => {
         }
     }
     
-    // Add loaded class to body for fade-in effect
-    document.body.style.opacity = '0';
+    // Add modern loading animation
+    document.body.classList.add('loading');
+    
+    // Create loading overlay
+    const loader = document.createElement('div');
+    loader.className = 'modern-loader';
+    loader.innerHTML = `
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Loading Portfolio...</p>
+        </div>
+    `;
+    document.body.appendChild(loader);
+    
+    // Remove loader after a delay
     setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        document.body.classList.remove('loading');
+        
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+    }, 1500);
 });
 
 // ============================================
@@ -458,7 +476,52 @@ window.addEventListener('scroll', optimizedScrollHandler);
 // ============================================
 // Console Welcome Message
 // ============================================
-console.log('%c👋 Welcome to my Portfolio!', 'font-size: 20px; font-weight: bold; color: #ff0000;');
-console.log('%cBuilt with modern JavaScript and CSS', 'font-size: 14px; color: #666;');
-console.log('%cFeel free to explore the code!', 'font-size: 12px; color: #999;');
+console.log('%c👋 Welcome to my Portfolio!', 'font-size: 20px; font-weight: bold; color: #6366f1;');
+console.log('%cBuilt with modern JavaScript and CSS', 'font-size: 14px; color: #64748b;');
+console.log('%cFeel free to explore the code!', 'font-size: 12px; color: #94a3b8;');
+
+// Add loader styles dynamically
+const loaderStyles = `
+    .modern-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--surface-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loader-content {
+        text-align: center;
+        color: var(--text-color);
+    }
+    
+    .loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid var(--border-color);
+        border-top: 3px solid var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .loading {
+        overflow: hidden;
+    }
+`;
+
+const loaderStyleElement = document.createElement('style');
+loaderStyleElement.textContent = loaderStyles;
+document.head.appendChild(loaderStyleElement);
 
