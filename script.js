@@ -61,6 +61,22 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Handle orientation change for mobile devices
+window.addEventListener('orientationchange', () => {
+    // Close mobile menu on orientation change
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Adjust for mobile viewport height changes
+    setTimeout(() => {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    }, 100);
+});
+
+// Set initial viewport height for mobile devices
+document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+
 // ============================================
 // Navbar Scroll Effect
 // ============================================
