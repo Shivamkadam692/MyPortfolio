@@ -1,423 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shivam Kadam Portfolio</title>
+    <title>Shivam Kadam | Full Stack Developer & MERN Specialist</title>
+    <meta name="description" content="Shivam Kadam – Full Stack Developer specialising in MERN, Python, Docker, and AI-driven web applications. Browse projects, skills and contact info.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- Navigation -->
+
+    <!-- ── Loader ─────────────────────────────── -->
+    <div class="loader-overlay" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">SK</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <div class="loader-text">Loading Experience...</div>
+        </div>
+    </div>
+
+    <!-- ── Navigation ─────────────────────────── -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
-            <div class="logo">
-                <span class="logo-text">SK</span>
-            </div>
+            <a href="#home" class="logo">
+                <div class="logo-icon">SK</div>
+                <span class="logo-text">Shivam</span>
+            </a>
+
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#home"     class="nav-link active">Home</a></li>
+                <li><a href="#about"    class="nav-link">About</a></li>
+                <li><a href="#skills"   class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#resume" class="nav-link">Resume</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#resume"   class="nav-link">Resume</a></li>
+                <li><a href="#contact"  class="nav-link">Contact</a></li>
             </ul>
+
             <div class="nav-controls">
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun" id="theme-icon"></i>
                 </button>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+                    <span></span><span></span><span></span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ── Hero ───────────────────────────────── -->
     <header id="home" class="hero">
-        <div class="hero-background">
-            <div class="animated-bg"></div>
-        </div>
+        <!-- Three.js Canvas -->
+        <canvas id="hero-canvas"></canvas>
+
+        <!-- Floating Orbs -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
         <div class="container hero-content">
+            <!-- Left: text -->
             <div class="hero-text">
-                <h1 class="typing-text" id="typing-text"></h1>
-                <p class="hero-subtitle">Web Developer | Programmer | M.E.R.N Stack Developer</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <div class="hero-eyebrow" id="hero-eyebrow">
+                    <span class="status-dot"></span>
+                    Available for opportunities
                 </div>
-                <div class="social-links">
-                    <a href="https://github.com/Shivamkadam692" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="shivam.2015kadam@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
+                <h1 class="hero-name" id="hero-name">
+                    Hi, I'm<br>
+                    <span class="name-gradient">Shivam Kadam</span>
+                </h1>
+
+                <div class="hero-role" id="hero-role">
+                    <span class="typing-text" id="typing-text"></span>
+                </div>
+
+                <p class="hero-desc" id="hero-desc">
+                    Passionate Full Stack Developer building modern, performant web experiences with MERN Stack, Python, Docker, and AI tooling.
+                </p>
+
+                <div class="hero-actions" id="hero-actions">
+                    <a href="#projects" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> View Projects
+                    </a>
+                    <a href="#contact" class="btn btn-ghost btn-large">
+                        <i class="fas fa-paper-plane"></i> Contact Me
+                    </a>
+                </div>
+
+                <div class="hero-socials" id="hero-socials">
+                    <a href="https://github.com/Shivamkadam692" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:shivam.2015kadam@gmail.com" class="social-btn" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <img src="PHOTO.jpg" alt="Shivam Kadam" class="profile-img">
-                    <div class="image-border"></div>
+
+            <!-- Right: 3D profile -->
+            <div class="hero-visual" id="hero-visual">
+                <div class="profile-3d-wrap">
+                    <!-- Rotating ring -->
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+
+                    <!-- Profile image -->
+                    <div class="profile-frame">
+                        <img src="PHOTO.jpg" alt="Shivam Kadam" class="profile-img">
+                        <div class="profile-glow"></div>
+                    </div>
+
+                    <!-- Orbiting tech icons -->
+                    <div class="orbit-icons">
+                        <div class="orbit-icon" style="--angle:0deg"><i class="fab fa-react"></i></div>
+                        <div class="orbit-icon" style="--angle:60deg"><i class="fab fa-node-js"></i></div>
+                        <div class="orbit-icon" style="--angle:120deg"><i class="fab fa-python"></i></div>
+                        <div class="orbit-icon" style="--angle:180deg"><i class="fab fa-docker"></i></div>
+                        <div class="orbit-icon" style="--angle:240deg"><i class="fas fa-database"></i></div>
+                        <div class="orbit-icon" style="--angle:300deg"><i class="fab fa-git-alt"></i></div>
+                    </div>
+
+                    <!-- Floating badges -->
+                    <div class="hero-badge badge-top">
+                        <span class="badge-icon">🚀</span>
+                        <span>MERN Stack Dev</span>
+                    </div>
+                    <div class="hero-badge badge-bottom">
+                        <span class="badge-icon">💡</span>
+                        <span>13+ Projects</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
+
+        <div class="scroll-cue">
+            <span>Scroll</span>
+            <div class="scroll-mouse"></div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="section">
+    <!-- ── About ──────────────────────────────── -->
+    <section id="about" class="section about-section">
+        <div class="about-bg-mesh"></div>
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
-            <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-                <div class="about-image">
-                    <div class="image-container">
-                        <img src="PHOTO.jpg" alt="Shivam Kadam" class="profile-img">
-                        <div class="image-overlay"></div>
+            <div class="about-layout">
+                <!-- Image column -->
+                <div class="about-img-wrap" data-aos="fade-right">
+                    <div class="about-3d-card">
+                        <div class="about-img-inner">
+                            <img src="PHOTO.jpg" alt="Shivam Kadam" class="about-photo">
+                            <div class="about-scan-line"></div>
+                        </div>
+                        <div class="about-card-glow"></div>
+                        <div class="about-exp-badge">
+                            <span class="num">13+</span>
+                            <span class="lbl">Projects</span>
+                        </div>
+                        <!-- Corner decorations -->
+                        <div class="corner corner-tl"></div>
+                        <div class="corner corner-tr"></div>
+                        <div class="corner corner-bl"></div>
+                        <div class="corner corner-br"></div>
                     </div>
                 </div>
-                <div class="about-text">
-                    <h3>Hi, I'm Shivam Kadam</h3>
-                    <p>I'm graduated with a B.Sc in Computer Science, having 8+ CGPA, and I am currently pursuing my M.Sc in Computer Science. My academic journey has given me a solid grounding in modern development practices and the analytical mindset needed to solve complex problems.</p>
-                    <p>I enjoy applying my skills to streamline data-driven tasks and create efficient workflows. I communicate fluently in Marathi, English, and Hindi, which helps me collaborate comfortably in diverse teams and client engagements ,I hold certifications in MS-CIT and Advanced Excel, .</p>
-                    <p>Alongside my studies, I'm building a portfolio of responsive, user-friendly web experiences and continuously exploring new technologies to expand my capabilities as a developer.</p>
+
+                <!-- Text column -->
+                <div class="about-text-content" data-aos="fade-left" data-aos-delay="100">
+                    <div class="section-badge"><i class="fas fa-user"></i> About Me</div>
+                    <h2 class="section-title">Crafting <span>Digital Experiences</span></h2>
+
+                    <p>
+                        I hold a <strong>B.Sc in Computer Science (8+ CGPA)</strong> and have completed my <strong>M.Sc in Computer Science</strong>. My academic journey has given me a solid grounding in modern development practices and the analytical mindset needed to solve complex problems.
+                    </p>
+                    <p>
+                        I enjoy applying my skills to streamline data-driven tasks and create efficient workflows. I communicate fluently in <strong>Marathi, English, and Hindi</strong>, enabling smooth collaboration across diverse teams. I am certified in <strong>Advanced Excel</strong>.
+                    </p>
+
+                    <div class="about-highlights">
+                        <div class="highlight-item"><i class="fas fa-check-circle hi"></i> B.Sc Computer Science — 8+ CGPA</div>
+                        <div class="highlight-item"><i class="fas fa-check-circle hi"></i> M.Sc Computer Science</div>
+                        <div class="highlight-item"><i class="fas fa-check-circle hi"></i> Advanced Excel Certified</div>
+                        <div class="highlight-item"><i class="fas fa-check-circle hi"></i> Trilingual Communicator</div>
+                        <div class="highlight-item"><i class="fas fa-check-circle hi"></i> Open to Work</div>
+                    </div>
+
                     <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-target="13">0</span>
-                            <span class="stat-label">Projects</span>
+                        <div class="stat-block">
+                            <span class="n" data-target="13">0</span>
+                            <span class="l">Projects</span>
                         </div>
-             
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Skills</h2>
-            <div class="skills-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-java"></i></div>
-                    <h3>Java</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="100"></div>
-                    </div>
-                  
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-cubes"></i></div>
-                    <h3>MERN Stack</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="100"></div>
-                    </div>
-                   
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-python"></i></div>
-                    <h3>Python</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="100"></div>
-                    </div>
-                    
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <h3>SQL</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="100"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
-                    <h3>Git & GitHub</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="100"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fab fa-docker"></i></div>
-                    <h3>Docker</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
-                    <h3>Advanced Excel</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="95"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
-                    <h3>Full Stack Product Development with Vibe Coder</h3>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Projects</h2>
-            <div class="projects-grid" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-truck"></i>
+                        <div class="stat-block">
+                            <span class="n">8+</span>
+                            <span class="l">CGPA</span>
                         </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://t2yd-production.up.railway.app/" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Demo"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="https://github.com/Shivamkadam692/T2YD.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>T2YD - Transport To Your Destination</h3>
-                        <p>A modern goods transport and truck booking web platform. Features include load posting, truck assignment, transport owner workflows, admin dashboard, and real-time location tracking.</p>
-                        <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">EJS</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://t2yd-production.up.railway.app/" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-globe"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/Shivamkadam692/T2YD.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/BookH.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>BookH - Booking Platform</h3>
-                        <p>A comprehensive booking management web application built with Node.js and Express. Features include user authentication, booking management, admin dashboard, and cloud integration. The platform provides a seamless experience for managing reservations and bookings with a modern, responsive interface.</p>
-                        <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">EJS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/BookH.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://shivamkadam.online" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Live Site"><i class="fas fa-globe"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Personal Portfolio Website</h3>
-                        <p>The site you are browsing now — a single-page portfolio highlighting my background, skills, and projects with a polished, responsive experience.</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">Responsive UI</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://shivamkadam.online" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-globe"></i> Live Website
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/VcallPlatform" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>VcallPlatform - Video Calling Application</h3>
-                        <p>A real-time video calling platform built with WebRTC technology. Features include peer-to-peer video calling, chat functionality, and responsive UI. The application uses Socket.IO for real-time communication between users.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">Socket.IO</span>
-                            <span class="tag">WebRTC</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/VcallPlatform" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/MLComp.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>MLComp - ML Analysis Dashboard</h3>
-                        <p>A comprehensive machine learning analysis dashboard built with Python Flask that provides automated model training, evaluation, and comparison across multiple datasets. Features include multi-dataset support, multiple ML algorithms, automated model training, performance metrics, and interactive dashboard.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Flask</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Dashboard</span>
-                            <span class="tag">Data Analysis</span>
-                            <span class="tag">API</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/MLComp.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/WorkConnect.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>WorkConnect - Professional Services Platform</h3>
-                        <p>A modern, multilingual platform built with Node.js/Express backend and EJS frontend, featuring real-time notifications, request management, language support, responsive design, SEO optimization, and enhanced user-friendly UI. Connects clients with skilled workers based on skills and location.</p>
-                        <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">EJS</span>
-                            <span class="tag">Socket.IO</span>
-                            <span class="tag">Real-time</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/WorkConnect.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="editzzone.png" alt="EditzZone" class="project-img-display">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/EditzZone.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>EditzZone - Premium Editor Platform</h3>
-                        <p>A high-end "Cyber-Glass" platform for video editors. Features a marketplace, real-time tracking, and multilingual support. Implements a sophisticated design system with glassmorphism.</p>
-                        <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">Socket.IO</span>
-                            <span class="tag">Stripe</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/EditzZone.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="tripweb.png" alt="tripweb" class="project-img-display">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/tripweb.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>TripWeb - Travel Planning Portal</h3>
-                        <p>A comprehensive travel management platform for discovering destinations and planning itineraries. Features user authentication and a responsive, inviting interface for modern travelers.</p>
-                        <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">EJS</span>
-                            <span class="tag">JavaScript</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/tripweb.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="pradhikaran.png" alt="pradhikaran-Portal2" class="project-img-display">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Shivamkadam692/pradhikaran-Portal2.git" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Pradhikaran Portal - Research Governance</h3>
-                        <p>A production-ready MERN stack application for research governance. Features complex role-based workflows, real-time collaboration via Socket.io, and automated PDF report generation.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">MongoDB</span>
-                            <span class="tag">Socket.io</span>
-                            <span class="tag">PDFKit</span>
-                        </div>
-                        <div class="project-links-text">
-                            <a href="https://github.com/Shivamkadam692/pradhikaran-Portal2.git" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub Repository
-                            </a>
+                        <div class="stat-block">
+                            <span class="n">3+</span>
+                            <span class="l">Years Coding</span>
                         </div>
                     </div>
                 </div>
@@ -425,73 +215,492 @@
         </div>
     </section>
 
-    <!-- Resume Section -->
-    <section id="resume" class="section">
+    <!-- ── Skills ─────────────────────────────── -->
+    <section id="skills" class="section skills-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Resume</h2>
-            <div class="resume-content" data-aos="fade-up" data-aos-delay="100">
-                <p>Download my resume to learn more about my experience, skills, and achievements.</p>
-                <a href="ShivamPrakashKadamResume.pdf" download class="btn btn-primary btn-large">
-                    <i class="fas fa-download"></i> Download Resume
-                </a>
+            <div class="section-header centered" data-aos="fade-up">
+                <div class="section-badge"><i class="fas fa-code"></i> Tech Stack</div>
+                <h2 class="section-title">Skills & <span>Technologies</span></h2>
+                <p class="section-subtitle">A curated set of tools and languages I use to bring ideas to life.</p>
+            </div>
+
+            <!-- 3D Skill Cards Grid -->
+            <div class="skills-grid-3d" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d java"><i class="fab fa-java"></i></div>
+                        <h3>Java</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot half"></span>
+                            </div>
+                            <span class="skill-pct">90%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d mern"><i class="fas fa-layer-group"></i></div>
+                        <h3>MERN Stack</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+                            </div>
+                            <span class="skill-pct">95%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d python"><i class="fab fa-python"></i></div>
+                        <h3>Python</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot empty"></span>
+                            </div>
+                            <span class="skill-pct">85%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d db"><i class="fas fa-database"></i></div>
+                        <h3>SQL & NoSQL</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot half"></span>
+                            </div>
+                            <span class="skill-pct">90%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d git"><i class="fab fa-git-alt"></i></div>
+                        <h3>Git & GitHub</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+                            </div>
+                            <span class="skill-pct">92%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d docker"><i class="fab fa-docker"></i></div>
+                        <h3>Docker</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot empty"></span>
+                            </div>
+                            <span class="skill-pct">80%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d excel"><i class="fas fa-file-excel"></i></div>
+                        <h3>Advanced Excel</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+                            </div>
+                            <span class="skill-pct">95%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d ai"><i class="fas fa-robot"></i></div>
+                        <h3>AI Dev</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
+                            </div>
+                            <span class="skill-pct">98%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="98"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="skill-card-3d" data-tilt>
+                    <div class="skill-card-inner">
+                        <div class="skill-icon-3d react"><i class="fab fa-react"></i></div>
+                        <h3>React.js</h3>
+                        <div class="skill-level">
+                            <div class="skill-dots">
+                                <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span><span class="dot half"></span>
+                            </div>
+                            <span class="skill-pct">88%</span>
+                        </div>
+                        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
+    <!-- ── Projects ───────────────────────────── -->
+    <section id="projects" class="section projects-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Contact Me</h2>
-            <div class="contact-content" data-aos="fade-up" data-aos-delay="100">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
+            <div class="section-header centered" data-aos="fade-up">
+                <div class="section-badge"><i class="fas fa-folder-open"></i> Portfolio</div>
+                <h2 class="section-title">Featured <span>Projects</span></h2>
+                <p class="section-subtitle">Real-world applications built with modern stacks — from transport platforms to ML dashboards.</p>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- 1. T2YD -->
+                <div class="project-card-3d" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <div class="project-thumb-placeholder truck"><i class="fas fa-truck"></i></div>
+                            <div class="project-overlay">
+                                <a href="https://t2yd-production.up.railway.app/" target="_blank" rel="noopener" class="overlay-btn" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://github.com/Shivamkadam692/T2YD.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
+                        <div class="project-body">
+                            <div class="project-number">01</div>
+                            <h3>T2YD – Transport To Your Destination</h3>
+                            <p>Modern goods transport & truck booking platform featuring load posting, truck assignment, transport owner workflows, admin dashboard, and real-time location tracking.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">EJS</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://t2yd-production.up.railway.app/" target="_blank" rel="noopener" class="proj-link"><i class="fas fa-globe"></i> Live Demo</a>
+                            <a href="https://github.com/Shivamkadam692/T2YD.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 2. BookH -->
+                <div class="project-card-3d" data-aos="fade-up" data-aos-delay="150">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <div class="project-thumb-placeholder booking"><i class="fas fa-calendar-check"></i></div>
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/BookH.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">02</div>
+                            <h3>BookH – Booking Platform</h3>
+                            <p>Comprehensive booking management web application with user authentication, booking management, admin dashboard, and cloud integration with a modern responsive interface.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">EJS</span><span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/BookH.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 3. Portfolio -->
+                <div class="project-card-3d" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <div class="project-thumb-placeholder portfolio"><i class="fas fa-laptop-code"></i></div>
+                            <div class="project-overlay">
+                                <a href="https://shivamkadam.online" target="_blank" rel="noopener" class="overlay-btn" aria-label="Live Site"><i class="fas fa-globe"></i></a>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">03</div>
+                            <h3>Personal Portfolio Website</h3>
+                            <p>The site you are browsing now — a single-page portfolio highlighting my background, skills, and projects with a polished, fully responsive experience.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Three.js</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://shivamkadam.online" target="_blank" rel="noopener" class="proj-link"><i class="fas fa-globe"></i> Live Website</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 4. VcallPlatform -->
+                <div class="project-card-3d" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <div class="project-thumb-placeholder video"><i class="fas fa-video"></i></div>
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/VcallPlatform" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">04</div>
+                            <h3>VcallPlatform – Video Calling App</h3>
+                            <p>Real-time video calling platform built with WebRTC. Features peer-to-peer video, chat functionality, and Socket.IO for seamless real-time communication.</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Socket.IO</span><span class="tag">WebRTC</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/VcallPlatform" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 5. MLComp -->
+                <div class="project-card-3d" data-aos="fade-up" data-aos-delay="150">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <div class="project-thumb-placeholder ml"><i class="fas fa-brain"></i></div>
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/MLComp.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">05</div>
+                            <h3>MLComp – ML Analysis Dashboard</h3>
+                            <p>Python Flask dashboard for automated model training, evaluation and comparison across multiple datasets. Includes multi-model support, performance metrics, and an interactive interface.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Machine Learning</span><span class="tag">Data Analysis</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/MLComp.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 6. WorkConnect -->
+                <div class="project-card-3d" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <div class="project-thumb-placeholder work"><i class="fas fa-handshake"></i></div>
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/WorkConnect.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">06</div>
+                            <h3>WorkConnect – Professional Services</h3>
+                            <p>Multilingual platform connecting clients with skilled workers. Features real-time notifications, request management, SEO optimisation, and a location-based matching system.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Socket.IO</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/WorkConnect.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 7. EditzZone -->
+                <div class="project-card-3d featured" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <img src="editzzone.png" alt="EditzZone screenshot">
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/EditzZone.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                            <div class="featured-badge">Featured</div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">07</div>
+                            <h3>EditzZone – Premium Editor Platform</h3>
+                            <p>High-end "Cyber-Glass" platform for video editors with a marketplace, real-time tracking, multilingual support, Stripe payments and glassmorphism design system.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">Stripe</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/EditzZone.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 8. TripWeb -->
+                <div class="project-card-3d featured" data-aos="fade-up" data-aos-delay="150">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <img src="tripweb.png" alt="TripWeb screenshot">
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/tripweb.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                            <div class="featured-badge">Featured</div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">08</div>
+                            <h3>TripWeb – Travel Planning Portal</h3>
+                            <p>Comprehensive travel management platform for discovering destinations and planning itineraries. Features user authentication and a responsive, inviting interface for modern travellers.</p>
+                            <div class="project-tags">
+                                <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">EJS</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/tripweb.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+                <!-- 9. Pradhikaran -->
+                <div class="project-card-3d featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card-inner">
+                        <div class="project-thumb">
+                            <img src="pradhikaran.png" alt="Pradhikaran Portal screenshot">
+                            <div class="project-overlay">
+                                <a href="https://github.com/Shivamkadam692/pradhikaran-Portal2.git" target="_blank" rel="noopener" class="overlay-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                            <div class="featured-badge">Featured</div>
+                        </div>
+                        <div class="project-body">
+                            <div class="project-number">09</div>
+                            <h3>Pradhikaran Portal – Research Governance</h3>
+                            <p>Production-ready MERN stack application for research governance with complex role-based workflows, real-time collaboration via Socket.io, and automated PDF report generation.</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Socket.io</span><span class="tag">PDFKit</span>
+                            </div>
+                        </div>
+                        <div class="project-footer">
+                            <a href="https://github.com/Shivamkadam692/pradhikaran-Portal2.git" target="_blank" rel="noopener" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card-glow"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Resume ─────────────────────────────── -->
+    <section id="resume" class="section resume-section">
+        <div class="resume-bg"></div>
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="section-header centered" data-aos="fade-up">
+                <div class="section-badge"><i class="fas fa-file-alt"></i> Resume</div>
+                <h2 class="section-title">My <span>Resume</span></h2>
+            </div>
+            <div class="resume-card-3d" data-aos="fade-up" data-aos-delay="100">
+                <div class="resume-card-content">
+                    <div class="resume-icon-wrap">
+                        <div class="resume-icon-3d">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    </div>
+                    <div class="resume-text">
+                        <h3>Shivam Prakash Kadam</h3>
+                        <p>Full Stack Developer with expertise in MERN Stack, Python, Docker, and AI tooling. Download my resume for a comprehensive overview of my experience, certifications, and technical projects.</p>
+                        <div class="resume-tags">
+                            <span>MERN Stack</span><span>Python</span><span>Docker</span><span>AI</span>
+                        </div>
+                    </div>
+                    <a href="ShivamPrakashKadamResume.pdf" download class="btn btn-primary btn-large resume-download-btn">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                </div>
+                <div class="resume-card-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Contact ────────────────────────────── -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="section-header centered" data-aos="fade-up">
+                <div class="section-badge"><i class="fas fa-paper-plane"></i> Contact</div>
+                <h2 class="section-title">Let's <span>Connect</span></h2>
+                <p class="section-subtitle">Have a project in mind or just want to say hi? My inbox is always open.</p>
+            </div>
+
+            <div class="contact-layout" data-aos="fade-up" data-aos-delay="100">
+                <!-- Info cards -->
+                <div class="contact-info-stack">
+                    <div class="contact-card-3d">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-card-text">
+                            <h4>Email</h4>
                             <a href="mailto:shivam.2015kadam@gmail.com">shivam.2015kadam@gmail.com</a>
                         </div>
+                        <div class="contact-card-bg"></div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
+                    <div class="contact-card-3d">
+                        <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-card-text">
+                            <h4>Phone</h4>
+                            <a href="tel:+919119519621">+91 91195 19621</a>
                         </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <a href="tel:+919119519621">+91 9119519621</a>
-                        </div>
+                        <div class="contact-card-bg"></div>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact-card-3d">
+                        <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-card-text">
+                            <h4>Location</h4>
+                            <p>Available for remote work worldwide</p>
                         </div>
-                        <div class="contact-details">
-                            <h3>Location</h3>
-                            <p>Available for remote work</p>
+                        <div class="contact-card-bg"></div>
+                    </div>
+                    <div class="contact-card-3d">
+                        <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+                        <div class="contact-card-text">
+                            <h4>GitHub</h4>
+                            <a href="https://github.com/Shivamkadam692" target="_blank" rel="noopener">Shivamkadam692</a>
                         </div>
+                        <div class="contact-card-bg"></div>
                     </div>
                 </div>
-               
+
+
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ── Footer ─────────────────────────────── -->
     <footer class="footer">
+        <div class="footer-glow"></div>
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Shivam Kadam. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Shivamkadam692" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="shivam.2015kadam@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="logo-icon" style="width:36px;height:36px;font-size:0.9rem;">SK</div>
+                    <p class="footer-copy">&copy; 2025 <strong>Shivam Kadam</strong>. Built with passion & code.</p>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://github.com/Shivamkadam692" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:shivam.2015kadam@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
+    <!-- Scroll-to-top -->
     <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
